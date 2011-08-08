@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="hello">Hello World!</string>
     <string name="app_name">DenivipVideoComponents</string>
+
+    <!-- Title for error alert when a video cannot be played.  it can be used by any app. -->
+    <string name="VideoView_error_title">Cannot play video</string>
+    <!-- Text for error alert when a video container is not valid for progressive download/playback. -->
+    <string name="VideoView_error_text_invalid_progressive_playback">Sorry, this video is not valid for streaming to this device.</string>
+    <!-- Text for error alert when a video cannot be played. it can be used by any app. -->
+    <string name="VideoView_error_text_unknown">Sorry, this video cannot be played.</string>
+    <!-- Button to close error alert when a video cannot be played -->
+    <string name="VideoView_error_button">OK</string>
+
 </resources>
