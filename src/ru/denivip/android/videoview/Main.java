@@ -1,12 +1,17 @@
 package ru.denivip.android.videoview;
 
+import ru.denivip.android.video.MediaController;
+import ru.denivip.android.video.VideoView;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.MediaController;
-import android.widget.VideoView;
 
 public class Main extends Activity {
+	
+	private static final String TEST_STREAM_LOCAL = "http://local/PR243467.mp4";
+	
+	private static final String TEST_STREAM_REMOTE = "http://www.denivip.ru/trailer.mp4";
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,7 +25,7 @@ public class Main extends Activity {
         controller.setAnchorView(video);
         
         video.setMediaController(controller);
-        video.setVideoURI(Uri.parse("http://www.denivip.ru/trailer.mp4"));
+        video.setVideoURI(Uri.parse(TEST_STREAM_LOCAL));
         video.start();
     }
 }

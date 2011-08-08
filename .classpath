@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="src" path="DenivipVideoComponents_src"/>
+	<classpathentry kind="lib" path="/DenivipVideoComponents/bin"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
