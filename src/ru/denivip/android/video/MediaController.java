@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-package android.widget;
+package ru.denivip.android.video;
+
+import java.util.Formatter;
+import java.util.Locale;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -31,12 +34,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.MediaController.MediaPlayerControl;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
 import com.android.internal.policy.PolicyManager;
-
-import java.util.Formatter;
-import java.util.Locale;
 
 /**
  * A view containing controls for a MediaPlayer. Typically contains the
@@ -413,7 +419,7 @@ public class MediaController extends FrameLayout {
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         int keyCode = event.getKeyCode();
-        if (event.getRepeatCount() == 0 && event.isDown() && (
+        if (event.getRepeatCount() == 0 && event.getAction() == KeyEvent.ACTION_DOWN && (
                 keyCode ==  KeyEvent.KEYCODE_HEADSETHOOK ||
                 keyCode ==  KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE ||
                 keyCode ==  KeyEvent.KEYCODE_SPACE)) {
@@ -595,18 +601,5 @@ public class MediaController extends FrameLayout {
                 mPrevButton.setVisibility(View.VISIBLE);
             }
         }
-    }
-
-    public interface MediaPlayerControl {
-        void    start();
-        void    pause();
-        int     getDuration();
-        int     getCurrentPosition();
-        void    seekTo(int pos);
-        boolean isPlaying();
-        int     getBufferPercentage();
-        boolean canPause();
-        boolean canSeekBackward();
-        boolean canSeekForward();
     }
 }

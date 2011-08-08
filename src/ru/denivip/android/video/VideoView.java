@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package android.widget;
+package ru.denivip.android.video;
+
+import java.io.IOException;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -23,9 +25,9 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.Metadata;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
+import android.media.Metadata;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -35,9 +37,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.MediaController.MediaPlayerControl;
-
-import java.io.IOException;
-import java.util.Map;
 
 /**
  * Displays a video file.  The VideoView class
@@ -50,7 +49,6 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
     private String TAG = "VideoView";
     // settable by the client
     private Uri         mUri;
-    private Map<String, String> mHeaders;
     private int         mDuration;
 
     // all possible internal states
@@ -174,15 +172,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
     }
 
     public void setVideoURI(Uri uri) {
-        setVideoURI(uri, null);
-    }
-
-    /**
-     * @hide
-     */
-    public void setVideoURI(Uri uri, Map<String, String> headers) {
         mUri = uri;
-        mHeaders = headers;
         mSeekWhenPrepared = 0;
         openVideo();
         requestLayout();
@@ -208,7 +198,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
         // TODO: these constants need to be published somewhere in the framework.
         Intent i = new Intent("com.android.music.musicservicecommand");
         i.putExtra("command", "pause");
-        mContext.sendBroadcast(i);
+        getContext().sendBroadcast(i);
 
         // we shouldn't clear the target state, because somebody might have
         // called start() previously
@@ -222,7 +212,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
             mMediaPlayer.setOnErrorListener(mErrorListener);
             mMediaPlayer.setOnBufferingUpdateListener(mBufferingUpdateListener);
             mCurrentBufferPercentage = 0;
-            mMediaPlayer.setDataSource(mContext, mUri, mHeaders);
+            mMediaPlayer.setDataSource(getContext(), mUri);
             mMediaPlayer.setDisplay(mSurfaceHolder);
             mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mMediaPlayer.setScreenOnWhilePlaying(true);
@@ -280,8 +270,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
             mCurrentState = STATE_PREPARED;
 
             // Get the capabilities of the player for this stream
-            Metadata data = mp.getMetadata(MediaPlayer.METADATA_ALL,
-                                      MediaPlayer.BYPASS_METADATA_FILTER);
+            Metadata data = MediaPlayerInternals.getMetadata(mp, false, false);
 
             if (data != null) {
                 mCanPause = !data.has(Metadata.PAUSE_AVAILABLE)
@@ -374,7 +363,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
              * longer have a window, don't bother showing the user an error.
              */
             if (getWindowToken() != null) {
-                Resources r = mContext.getResources();
+                Resources r = getContext().getResources();
                 int messageId;
 
                 if (framework_err == MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK) {
@@ -383,7 +372,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
                     messageId = R.string.VideoView_error_text_unknown;
                 }
 
-                new AlertDialog.Builder(mContext)
+                new AlertDialog.Builder(getContext())
                         .setTitle(R.string.VideoView_error_title)
                         .setMessage(messageId)
                         .setPositiveButton(R.string.VideoView_error_button,
@@ -585,7 +574,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 
     public void suspend() {
         if (isInPlaybackState()) {
-            if (mMediaPlayer.suspend()) {
+            if (MediaPlayerInternals.suspend(mMediaPlayer)) {
                 mStateWhenSuspended = mCurrentState;
                 mCurrentState = STATE_SUSPEND;
                 mTargetState = STATE_SUSPEND;
@@ -603,7 +592,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
             return;
         }
         if (mMediaPlayer != null && mCurrentState == STATE_SUSPEND) {
-            if (mMediaPlayer.resume()) {
+            if (MediaPlayerInternals.resume(mMediaPlayer)) {
                 mCurrentState = mStateWhenSuspended;
                 mTargetState = mStateWhenSuspended;
             } else {
