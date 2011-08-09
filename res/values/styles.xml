@@ -60,7 +60,12 @@
         <item name="android:indeterminateDrawable">@drawable/progress_indeterminate_horizontal</item>
         <item name="android:minHeight">15dip</item>
         <item name="android:maxHeight">15dip</item>
-        <item name="android:thumb">@drawable/seek_thumb</item>
+        <item name="android:thumb">@drawable/my_seek_thumb</item>
+    </style>
+    
+    <style name="SeekBarVertical">
+    	<item name="android:progressDrawable">@drawable/progress_vertical</item>
+    	<item name="android:thumb">@drawable/my_seek_thumb</item>
     </style>
 
 </resources>

@@ -30,4 +30,11 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>VerticalSlidebarExample_src</name>
+			<type>2</type>
+			<locationURI>_android_VerticalSlidebarExample_b1d223d2/src</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

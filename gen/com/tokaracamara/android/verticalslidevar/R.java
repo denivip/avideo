@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package ru.denivip.android.video;
+package com.tokaracamara.android.verticalslidevar;
 
 public final class R {
     public static final class attr {
