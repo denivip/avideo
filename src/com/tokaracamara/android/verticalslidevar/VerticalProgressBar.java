@@ -13,15 +13,15 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.graphics.drawable.shapes.Shape;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewDebug;
 import android.view.ViewParent;
+import android.widget.ProgressBar;
 import android.widget.RemoteViews.RemoteView;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 
 
