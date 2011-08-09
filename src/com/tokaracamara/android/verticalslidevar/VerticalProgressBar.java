@@ -10,7 +10,6 @@ import android.graphics.drawable.ClipDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.graphics.drawable.shapes.Shape;
 import android.os.Parcel;
@@ -128,15 +127,6 @@ public class VerticalProgressBar extends View {
             }
 
             return newBg;
-
-        } else if (drawable instanceof StateListDrawable) {
-            StateListDrawable in = (StateListDrawable) drawable;
-            StateListDrawable out = new StateListDrawable();
-            /*int numStates = in.getStateCount();
-            for (int i = 0; i < numStates; i++) {
-                out.addState(in.getStateSet(i), tileify(in.getStateDrawable(i), clip));
-            }*/
-            return out;
 
         } else if (drawable instanceof BitmapDrawable) {
             final Bitmap tileBitmap = ((BitmapDrawable) drawable).getBitmap();
