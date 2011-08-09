@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/hello"
+    />
+
+
+
+<LinearLayout android:id="@+id/LinearLayout01" android:layout_width="wrap_content" android:layout_height="100dip">
+
+<com.tokaracamara.android.verticalslidevar.VerticalProgressBar
+	android:id="@+id/ProgressBar01"
+    android:progressDrawable="@drawable/progress_vertical"
+    android:layout_height="fill_parent" android:layout_width="24dip" android:layout_marginRight="20px"/>
+
+<com.tokaracamara.android.verticalslidevar.VerticalSeekBar
+	android:id="@+id/SeekBar01"
+    android:progressDrawable="@drawable/progress_vertical"
+    android:thumb="@drawable/seek_thumb"
+    android:layout_height="fill_parent" android:layout_width="26dip"/><com.tokaracamara.android.verticalslidevar.VerticalSeekBar
+	android:progressDrawable="@drawable/progress_vertical"
+    android:layout_height="fill_parent" android:id="@+id/SeekBar02" android:thumb="@drawable/seek_thumb_wide" android:layout_width="50dip"/>
+
+</LinearLayout>
+</LinearLayout>
