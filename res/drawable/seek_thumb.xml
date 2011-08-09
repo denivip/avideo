@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is the thumb on the seek bar. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true"
+          android:state_window_focused="true"
+          android:drawable="@drawable/position_onpress" />
+
+    <item android:state_focused="true"
+          android:state_window_focused="true"
+          android:drawable="@drawable/position_hover" />
+
+    <item android:state_selected="true"
+          android:state_window_focused="true"
+          android:drawable="@drawable/position_hover" />
+
+    <item android:drawable="@drawable/position_active" />
+
+</selector>

@@ -18,7 +18,6 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="hello">Hello World!</string>
     <string name="app_name">DenivipVideoComponents</string>
 
     <!-- Title for error alert when a video cannot be played.  it can be used by any app. -->
