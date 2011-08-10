@@ -22,7 +22,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -36,7 +35,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.MediaController.MediaPlayerControl;
 
 /**
  * Displays a video file.  The VideoView class
@@ -88,6 +86,9 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
     private boolean     mCanSeekBack;
     private boolean     mCanSeekForward;
     private int         mStateWhenSuspended;  //state before calling suspend()
+    
+    private float		  mSetLeftVolumeWhenPrepared;
+    private float		  mSetRightVolumeWhenPrepared;
 
     public VideoView(Context context) {
         super(context);
@@ -174,6 +175,8 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
     public void setVideoURI(Uri uri) {
         mUri = uri;
         mSeekWhenPrepared = 0;
+        mSetLeftVolumeWhenPrepared = 0;
+        mSetRightVolumeWhenPrepared = 0;
         openVideo();
         requestLayout();
         invalidate();
@@ -296,6 +299,13 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
             if (seekToPosition != 0) {
                 seekTo(seekToPosition);
             }
+            
+            float leftVolume = mSetLeftVolumeWhenPrepared;
+            float rightVolume = mSetRightVolumeWhenPrepared;
+            if (leftVolume != 0 || rightVolume != 0) {
+            	setVolume(leftVolume, rightVolume);
+            }
+            
             if (mVideoWidth != 0 && mVideoHeight != 0) {
                 //Log.i("@@@@", "video size: " + mVideoWidth +"/"+ mVideoHeight);
                 getHolder().setFixedSize(mVideoWidth, mVideoHeight);
@@ -363,7 +373,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
              * longer have a window, don't bother showing the user an error.
              */
             if (getWindowToken() != null) {
-                Resources r = getContext().getResources();
+                getContext().getResources();
                 int messageId;
 
                 if (framework_err == MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK) {
@@ -447,6 +457,9 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
             if (mMediaPlayer != null && isValidState && hasValidSize) {
                 if (mSeekWhenPrepared != 0) {
                     seekTo(mSeekWhenPrepared);
+                }
+                if (mSetLeftVolumeWhenPrepared != 0 || mSetRightVolumeWhenPrepared != 0) {
+                	setVolume(mSetLeftVolumeWhenPrepared, mSetRightVolumeWhenPrepared);
                 }
                 start();
                 if (mMediaController != null) {
@@ -663,4 +676,15 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
     public boolean canSeekForward() {
         return mCanSeekForward;
     }
+
+	public void setVolume(float leftVolume, float rightVolume) {
+		if (mMediaPlayer != null && mCurrentState != STATE_ERROR) {
+			mMediaPlayer.setVolume(leftVolume, rightVolume);
+			mSetLeftVolumeWhenPrepared = 0; 
+			mSetRightVolumeWhenPrepared = 0; 
+		} else {
+			mSetLeftVolumeWhenPrepared = leftVolume; 
+			mSetRightVolumeWhenPrepared = rightVolume; 
+		}
+	}
 }

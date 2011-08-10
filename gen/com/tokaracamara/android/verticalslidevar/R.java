@@ -64,12 +64,13 @@ public final class R {
         public static final int contrast=0x7f060008;
         public static final int leftButtons=0x7f060007;
         public static final int mediacontroller_progress=0x7f060006;
-        public static final int mute=0x7f06000d;
+        public static final int mute=0x7f06000e;
         public static final int pause=0x7f060005;
         public static final int quality=0x7f06000a;
         public static final int relativeLayout=0x7f060004;
-        public static final int rightButtons=0x7f06000b;
-        public static final int volumeBar=0x7f06000c;
+        public static final int rightButtons=0x7f06000c;
+        public static final int volume=0x7f06000b;
+        public static final int volumeBar=0x7f06000d;
     }
     public static final class layout {
         public static final int main=0x7f030000;

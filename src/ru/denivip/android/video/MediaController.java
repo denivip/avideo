@@ -16,9 +16,6 @@
 
 package ru.denivip.android.video;
 
-import java.util.Formatter;
-import java.util.Locale;
-
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.media.AudioManager;
@@ -36,13 +33,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.MediaController.MediaPlayerControl;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TextView;
 
 import com.android.internal.policy.PolicyManager;
+import com.tokaracamara.android.verticalslidevar.VerticalProgressBar;
+import com.tokaracamara.android.verticalslidevar.VerticalSeekBar;
 
 /**
  * A view containing controls for a MediaPlayer. Typically contains the
@@ -82,15 +79,16 @@ public class MediaController extends FrameLayout {
     private Window              mWindow;
     private View                mDecor;
     private ProgressBar         mProgress;
-    private TextView            mEndTime, mCurrentTime;
     private boolean             mShowing;
     private boolean             mDragging;
     private static final int    sDefaultTimeout = 3000;
     private static final int    FADE_OUT = 1;
     private static final int    SHOW_PROGRESS = 2;
-    StringBuilder               mFormatBuilder;
-    Formatter                   mFormatter;
     private ImageButton         mPauseButton;
+    
+    private VerticalProgressBar mVolumeLevel;
+    private ImageButton		 mMuteButton;
+    private float				 mMuteSavedVolume = 0;
 
     public MediaController(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -150,6 +148,7 @@ public class MediaController extends FrameLayout {
     public void setMediaPlayer(MediaPlayerControl player) {
         mPlayer = player;
         updatePausePlay();
+        initVolumeLevel();
     }
 
     /**
@@ -191,6 +190,11 @@ public class MediaController extends FrameLayout {
             mPauseButton.requestFocus();
             mPauseButton.setOnClickListener(mPauseListener);
         }
+        
+        mMuteButton = (ImageButton) v.findViewById(R.id.mute);
+        if (mMuteButton != null) {
+        	mMuteButton.setOnClickListener(mMuteListener);
+        }
 
         mProgress = (ProgressBar) v.findViewById(R.id.mediacontroller_progress);
         if (mProgress != null) {
@@ -200,9 +204,16 @@ public class MediaController extends FrameLayout {
             }
             mProgress.setMax(1000);
         }
-
-        mFormatBuilder = new StringBuilder();
-        mFormatter = new Formatter(mFormatBuilder, Locale.getDefault());
+        
+        mVolumeLevel = (VerticalProgressBar) v.findViewById(R.id.volumeBar);
+        if (mVolumeLevel != null) {
+        	if (mVolumeLevel instanceof VerticalSeekBar) {
+        		VerticalSeekBar volume = (VerticalSeekBar) mVolumeLevel;
+        		volume.setOnSeekBarChangeListener(mVolumeLevelListener);
+        	}
+        	mVolumeLevel.setMax(100);
+        	mVolumeLevel.setProgress(50);
+        }
     }
 
     /**
@@ -317,21 +328,6 @@ public class MediaController extends FrameLayout {
         }
     };
 
-    private String stringForTime(int timeMs) {
-        int totalSeconds = timeMs / 1000;
-
-        int seconds = totalSeconds % 60;
-        int minutes = (totalSeconds / 60) % 60;
-        int hours   = totalSeconds / 3600;
-
-        mFormatBuilder.setLength(0);
-        if (hours > 0) {
-            return mFormatter.format("%d:%02d:%02d", hours, minutes, seconds).toString();
-        } else {
-            return mFormatter.format("%02d:%02d", minutes, seconds).toString();
-        }
-    }
-
     private int setProgress() {
         if (mPlayer == null || mDragging) {
             return 0;
@@ -347,11 +343,6 @@ public class MediaController extends FrameLayout {
             int percent = mPlayer.getBufferPercentage();
             mProgress.setSecondaryProgress(percent * 10);
         }
-
-        if (mEndTime != null)
-            mEndTime.setText(stringForTime(duration));
-        if (mCurrentTime != null)
-            mCurrentTime.setText(stringForTime(position));
 
         return position;
     }
@@ -407,6 +398,21 @@ public class MediaController extends FrameLayout {
             show(sDefaultTimeout);
         }
     };
+    
+    private View.OnClickListener mMuteListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			if (mMuteSavedVolume == 0) {
+				mMuteSavedVolume = (float) mVolumeLevel.getProgress() / 100;
+				mVolumeLevel.setProgress(0);
+				mPlayer.setVolume(0, 0);
+			} else {
+				mVolumeLevel.setProgress((int)(mMuteSavedVolume * 100));
+				mPlayer.setVolume(mMuteSavedVolume, mMuteSavedVolume);
+				mMuteSavedVolume = 0;
+			}
+		}
+	};
 
     private void updatePausePlay() {
         if (mRoot == null || mPauseButton == null)
@@ -417,6 +423,10 @@ public class MediaController extends FrameLayout {
         } else {
             mPauseButton.setImageResource(R.drawable.button_pause); // FIXME play
         }
+    }
+    
+    private void initVolumeLevel() {
+    	mPlayer.setVolume((float)0.5, (float)0.5);
     }
 
     private void doPauseResume() {
@@ -463,8 +473,6 @@ public class MediaController extends FrameLayout {
             long duration = mPlayer.getDuration();
             long newposition = (duration * progress) / 1000L;
             mPlayer.seekTo( (int) newposition);
-            if (mCurrentTime != null)
-                mCurrentTime.setText(stringForTime( (int) newposition));
         }
 
         public void onStopTrackingTouch(SeekBar bar) {
@@ -479,6 +487,30 @@ public class MediaController extends FrameLayout {
             mHandler.sendEmptyMessage(SHOW_PROGRESS);
         }
     };
+    
+    private VerticalSeekBar.OnSeekBarChangeListener mVolumeLevelListener = new VerticalSeekBar.OnSeekBarChangeListener() {
+		
+		@Override
+		public void onStopTrackingTouch(VerticalSeekBar seekBar) {
+            show(sDefaultTimeout);
+		}
+		
+		@Override
+		public void onStartTrackingTouch(VerticalSeekBar seekBar) {
+            show(3600000);
+		}
+		
+		@Override
+		public void onProgressChanged(VerticalSeekBar seekBar, int progress,
+				boolean fromUser) {
+            if (!fromUser) {
+                return;
+            }
+
+            float volume = (float)progress / 100;
+            mPlayer.setVolume(volume, volume);
+		}
+	};
 
     @Override
     public void setEnabled(boolean enabled) {
