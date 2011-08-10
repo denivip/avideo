@@ -36,6 +36,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.ViewFlipper;
 
 import com.android.internal.policy.PolicyManager;
 import com.tokaracamara.android.verticalslidevar.VerticalProgressBar;
@@ -89,6 +90,16 @@ public class MediaController extends FrameLayout {
     private VerticalProgressBar mVolumeLevel;
     private ImageButton		 mMuteButton;
     private float				 mMuteSavedVolume = 0;
+    private ViewFlipper		 mRightButtons;
+    private ImageButton		 mContrastButton;
+    private ImageButton		 mBrightnessButton;
+    private ImageButton         mQualityButton;
+    private ImageButton         mVolumeButton;
+    
+    private static final int FLIPPER_CHILD_VOLUME = 0;
+    private static final int FLIPPER_CHILD_QUALITY = 1;
+    private static final int FLIPPER_CHILD_BRIGHTNESS = 2;
+    private static final int FLIPPER_CHILD_CONTRAST = 3;
 
     public MediaController(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -213,6 +224,29 @@ public class MediaController extends FrameLayout {
         	}
         	mVolumeLevel.setMax(100);
         	mVolumeLevel.setProgress(50);
+        }
+        
+        mRightButtons = (ViewFlipper) v.findViewById(R.id.rightButtons);
+        if (mRightButtons != null) {
+            mContrastButton = (ImageButton) v.findViewById(R.id.contrast);
+            if (mContrastButton != null) {
+            	mContrastButton.setOnClickListener(mContrastListener);
+            }
+            
+            mBrightnessButton = (ImageButton) v.findViewById(R.id.brightness);
+            if (mBrightnessButton != null) {
+            	mBrightnessButton.setOnClickListener(mBrightnessListener);
+            }
+            
+            mQualityButton = (ImageButton) v.findViewById(R.id.quality);
+            if (mQualityButton != null) {
+            	mQualityButton.setOnClickListener(mQualityListener);
+            }
+            
+            mVolumeButton = (ImageButton) v.findViewById(R.id.volume);
+            if (mVolumeButton != null) {
+            	mVolumeButton.setOnClickListener(mVolumeListener);
+            }
         }
     }
 
@@ -349,13 +383,13 @@ public class MediaController extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        show(sDefaultTimeout);
+        show();
         return true;
     }
 
     @Override
     public boolean onTrackballEvent(MotionEvent ev) {
-        show(sDefaultTimeout);
+        show();
         return false;
     }
 
@@ -367,7 +401,7 @@ public class MediaController extends FrameLayout {
                 keyCode ==  KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE ||
                 keyCode ==  KeyEvent.KEYCODE_SPACE)) {
             doPauseResume();
-            show(sDefaultTimeout);
+            show();
             if (mPauseButton != null) {
                 mPauseButton.requestFocus();
             }
@@ -387,7 +421,7 @@ public class MediaController extends FrameLayout {
 
             return true;
         } else {
-            show(sDefaultTimeout);
+            show();
         }
         return super.dispatchKeyEvent(event);
     }
@@ -395,7 +429,7 @@ public class MediaController extends FrameLayout {
     private View.OnClickListener mPauseListener = new View.OnClickListener() {
         public void onClick(View v) {
             doPauseResume();
-            show(sDefaultTimeout);
+            show();
         }
     };
     
@@ -411,6 +445,43 @@ public class MediaController extends FrameLayout {
 				mPlayer.setVolume(mMuteSavedVolume, mMuteSavedVolume);
 				mMuteSavedVolume = 0;
 			}
+			show();
+		}
+	};
+	
+	private View.OnClickListener mContrastListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			mRightButtons.setDisplayedChild(FLIPPER_CHILD_CONTRAST);
+			mContrastButton.requestFocusFromTouch();
+			show();
+		}
+	};
+
+	private View.OnClickListener mBrightnessListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			mRightButtons.setDisplayedChild(FLIPPER_CHILD_BRIGHTNESS);
+			mBrightnessButton.requestFocusFromTouch();
+			show();
+		}
+	};
+
+	private View.OnClickListener mQualityListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			mRightButtons.setDisplayedChild(FLIPPER_CHILD_QUALITY);
+			mQualityButton.requestFocusFromTouch();
+			show();
+		}
+	};
+
+	private View.OnClickListener mVolumeListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			mRightButtons.setDisplayedChild(FLIPPER_CHILD_VOLUME);
+			mVolumeButton.requestFocusFromTouch();
+			show();
 		}
 	};
 
@@ -479,7 +550,7 @@ public class MediaController extends FrameLayout {
             mDragging = false;
             setProgress();
             updatePausePlay();
-            show(sDefaultTimeout);
+            show();
 
             // Ensure that progress is properly updated in the future,
             // the call to show() does not guarantee this because it is a
@@ -492,7 +563,7 @@ public class MediaController extends FrameLayout {
 		
 		@Override
 		public void onStopTrackingTouch(VerticalSeekBar seekBar) {
-            show(sDefaultTimeout);
+            show();
 		}
 		
 		@Override

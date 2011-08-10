@@ -66,13 +66,17 @@
 		    			  
     </LinearLayout>
     
-    <LinearLayout android:id="@+id/rightButtons" 
+   	<ViewFlipper android:id="@+id/rightButtons" 
     			  android:layout_alignParentRight="true" 
-    			  android:layout_centerInParent="true" 
+    			  android:layout_centerInParent="true"
+    			  android:paddingRight="15dip" 
+   				  android:layout_height="wrap_content" 
+   				  android:layout_width="wrap_content">
+ 
+    <LinearLayout android:id="@+id/volumeView" 
     			  android:layout_width="wrap_content" 
     			  android:layout_height="wrap_content"
-    			  android:orientation="vertical"
-    			  android:paddingRight="15dip">
+    			  android:orientation="vertical">
 		
    	<com.tokaracamara.android.verticalslidevar.VerticalSeekBar
 		android:id="@+id/volumeBar"
@@ -81,7 +85,7 @@
     	android:layout_height="200dip"
     	android:layout_gravity="center_horizontal"
     	android:layout_width="25dip" />
- 
+    	
     <ImageButton android:id="@+id/mute"
     			 android:layout_width="wrap_content" 
     			 android:layout_height="wrap_content" 
@@ -90,4 +94,64 @@
     ></ImageButton>
 		    			  
     </LinearLayout>
+
+    <LinearLayout android:id="@+id/qualityView" 
+    			  android:layout_width="wrap_content" 
+    			  android:layout_height="wrap_content"
+    			  android:orientation="vertical">
+		
+    <ImageButton android:id="@+id/lq"
+    			 android:layout_width="wrap_content" 
+    			 android:layout_height="wrap_content" 
+    			 style="@style/MediaButton.HD" 
+    			 android:layout_centerInParent="true"
+    ></ImageButton>
+		    			  
+    <ImageButton android:id="@+id/mq"
+    			 android:layout_width="wrap_content" 
+    			 android:layout_height="wrap_content" 
+    			 style="@style/MediaButton.HD" 
+    			 android:layout_centerInParent="true"
+    ></ImageButton>
+		    			  
+    <ImageButton android:id="@+id/hq"
+    			 android:layout_width="wrap_content" 
+    			 android:layout_height="wrap_content" 
+    			 style="@style/MediaButton.HD" 
+    			 android:layout_centerInParent="true"
+    ></ImageButton>
+		    			  
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/brightnessView" 
+    			  android:layout_width="wrap_content" 
+    			  android:layout_height="wrap_content"
+    			  android:orientation="vertical">
+		
+   	<com.tokaracamara.android.verticalslidevar.VerticalSeekBar
+		android:id="@+id/brightnessBar"
+    	android:progressDrawable="@drawable/my_progress_vertical"
+    	android:thumb="@drawable/my_seek_thumb"
+    	android:layout_height="200dip"
+    	android:layout_gravity="center_horizontal"
+    	android:layout_width="25dip" />
+    	
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/contrastView" 
+    			  android:layout_width="wrap_content" 
+    			  android:layout_height="wrap_content"
+    			  android:orientation="vertical">
+		
+   	<com.tokaracamara.android.verticalslidevar.VerticalSeekBar
+		android:id="@+id/contrastBar"
+    	android:progressDrawable="@drawable/my_progress_vertical"
+    	android:thumb="@drawable/my_seek_thumb"
+    	android:layout_height="200dip"
+    	android:layout_gravity="center_horizontal"
+    	android:layout_width="25dip" />
+    	
+    </LinearLayout>
+    
+   	</ViewFlipper>
 </RelativeLayout>
