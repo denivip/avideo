@@ -22,7 +22,7 @@ public class Main extends Activity {
         
         MediaController controller = new MediaController(this);
         controller.setMediaPlayer(video);
-        controller.setAnchorView(video);
+        controller.setAnchorView(findViewById(R.id.videoContainer));
         
         video.setMediaController(controller);
         video.setVideoURI(Uri.parse(TEST_STREAM_LOCAL));
