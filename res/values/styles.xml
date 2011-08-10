@@ -64,7 +64,7 @@
     </style>
     
     <style name="SeekBarVertical">
-    	<item name="android:progressDrawable">@drawable/progress_vertical</item>
+    	<item name="android:progressDrawable">@drawable/my_progress_vertical</item>
     	<item name="android:thumb">@drawable/my_seek_thumb</item>
     </style>
 
