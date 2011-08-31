@@ -4,16 +4,16 @@
 
     <item android:state_pressed="true"
           android:state_window_focused="true"
-          android:drawable="@drawable/position_onpress" />
+          android:drawable="@drawable/volthumb_onpress" />
 
     <item android:state_focused="true"
           android:state_window_focused="true"
-          android:drawable="@drawable/position_hover" />
+          android:drawable="@drawable/volthumb_hover" />
 
     <item android:state_selected="true"
           android:state_window_focused="true"
-          android:drawable="@drawable/position_hover" />
+          android:drawable="@drawable/volthumb_hover" />
 
-    <item android:drawable="@drawable/position_active" />
+    <item android:drawable="@drawable/volthumb_active" />
 
 </selector>

@@ -490,9 +490,9 @@ public class MediaController extends FrameLayout {
             return;
 
         if (mPlayer.isPlaying()) {
-            mPauseButton.setImageResource(R.drawable.button_pause);
+            mPauseButton.setImageResource(R.drawable.ic_pause);
         } else {
-            mPauseButton.setImageResource(R.drawable.button_pause); // FIXME play
+            mPauseButton.setImageResource(R.drawable.ic_play);
         }
     }
     

@@ -23,7 +23,7 @@
             style="@style/SeekBarHorizontal"
             android:layout_width="0dip"
             android:layout_weight="1"
-            android:layout_height="34dip"
+            android:layout_height="62dip"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true" />
 
@@ -80,11 +80,9 @@
 		
    	<com.tokaracamara.android.verticalslidevar.VerticalSeekBar
 		android:id="@+id/volumeBar"
-    	android:progressDrawable="@drawable/my_progress_vertical"
-    	android:thumb="@drawable/my_seek_thumb"
-    	android:layout_height="200dip"
     	android:layout_gravity="center_horizontal"
-    	android:layout_width="25dip" />
+        style="@style/SeekBarVertical"
+    	android:layout_width="93dip" android:layout_height="300dip"/>
     	
     <ImageButton android:id="@+id/mute"
     			 android:layout_width="wrap_content" 
@@ -103,14 +101,14 @@
     <ImageButton android:id="@+id/lq"
     			 android:layout_width="wrap_content" 
     			 android:layout_height="wrap_content" 
-    			 style="@style/MediaButton.HD" 
+    			 style="@style/MediaButton.LD" 
     			 android:layout_centerInParent="true"
     ></ImageButton>
 		    			  
     <ImageButton android:id="@+id/mq"
     			 android:layout_width="wrap_content" 
     			 android:layout_height="wrap_content" 
-    			 style="@style/MediaButton.HD" 
+    			 style="@style/MediaButton.MD" 
     			 android:layout_centerInParent="true"
     ></ImageButton>
 		    			  
@@ -130,11 +128,10 @@
 		
    	<com.tokaracamara.android.verticalslidevar.VerticalSeekBar
 		android:id="@+id/brightnessBar"
-    	android:progressDrawable="@drawable/my_progress_vertical"
-    	android:thumb="@drawable/my_seek_thumb"
-    	android:layout_height="200dip"
+        style="@style/SeekBarVertical"
+    	android:layout_height="300dip"
     	android:layout_gravity="center_horizontal"
-    	android:layout_width="25dip" />
+    	android:layout_width="93dip" />
     	
     </LinearLayout>
 
@@ -145,11 +142,10 @@
 		
    	<com.tokaracamara.android.verticalslidevar.VerticalSeekBar
 		android:id="@+id/contrastBar"
-    	android:progressDrawable="@drawable/my_progress_vertical"
-    	android:thumb="@drawable/my_seek_thumb"
-    	android:layout_height="200dip"
+        style="@style/SeekBarVertical"
+    	android:layout_height="300dip"
     	android:layout_gravity="center_horizontal"
-    	android:layout_width="25dip" />
+    	android:layout_width="93dip" />
     	
     </LinearLayout>
     

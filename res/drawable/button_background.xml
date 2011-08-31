@@ -3,19 +3,19 @@
     <item android:state_focused="true" 
     	  android:state_pressed="false" 
     	  android:state_enabled="true"
-          android:drawable="@drawable/button_hover" />
+          android:drawable="@drawable/btn_hover" />
     <item android:state_enabled="true" 
     	  android:state_pressed="true" 
-    	  android:drawable="@drawable/button_onpress" />
+    	  android:drawable="@drawable/btn_onpress" />
     <item android:state_enabled="true" 
     	  android:state_focused="false" 
     	  android:state_pressed="false"
-          android:drawable="@drawable/button_active" />
+          android:drawable="@drawable/btn_active" />
     <item android:state_focused="true" 
     	  android:state_enabled="false" 
-    	  android:drawable="@drawable/button_none_active" />
+    	  android:drawable="@drawable/btn_normal" />
     <item android:state_focused="false" 
     	  android:state_enabled="false" 
-    	  android:drawable="@drawable/button_none_active" />
-    <item android:drawable="@drawable/button_active" />
+    	  android:drawable="@drawable/btn_normal" />
+    <item android:drawable="@drawable/btn_active" />
 </selector>

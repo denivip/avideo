@@ -15,12 +15,12 @@
 -->
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@android:id/background" android:drawable="@drawable/hor_progressbar" />
+    <item android:id="@android:id/background" android:drawable="@drawable/seekbar_total" />
     <item android:id="@android:id/secondaryProgress">
-    	<clip android:drawable="@drawable/progress_secondary" />
+    	<clip android:drawable="@drawable/seekbar_buffer" />
     </item>
     <item android:id="@android:id/progress">
-    	<clip android:drawable="@drawable/progress" />
+    	<clip android:drawable="@drawable/seekbar_played" />
     </item>
 </layer-list>
 

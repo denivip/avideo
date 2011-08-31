@@ -23,7 +23,7 @@
     </style>
 
     <style name="BigMediaButton.Play">
-        <item name="android:src">@drawable/button_pause</item>
+        <item name="android:src">@drawable/ic_pause</item>
     </style>
 
     <style name="MediaButton">
@@ -33,39 +33,50 @@
     </style>
 
     <style name="MediaButton.Brightness">
-        <item name="android:src">@drawable/button_brightness</item>
+         <item name="android:src">@drawable/ic_brightness</item>
     </style>
 
     <style name="MediaButton.Contrast">
-        <item name="android:src">@drawable/button_contrast</item>
+        <item name="android:src">@drawable/ic_contrast</item>
     </style>
 
     <style name="MediaButton.HD">
-        <item name="android:src">@drawable/button_hd</item>
+        <item name="android:src">@drawable/ic_hd</item>
+    </style>
+
+    <style name="MediaButton.MD">
+        <item name="android:src">@drawable/ic_md</item>
+    </style>
+
+    <style name="MediaButton.LD">
+        <item name="android:src">@drawable/ic_ld</item>
     </style>
 
     <style name="MediaButton.Mute">
-        <item name="android:src">@drawable/button_mute</item>
+        <item name="android:src">@drawable/ic_mute</item>
     </style>
 
     <style name="ThumbButton">
         <item name="android:background">@drawable/thumb_background</item>
-        <item name="android:layout_width">34dip</item>
-        <item name="android:layout_height">34dip</item>
+        <item name="android:layout_width">93dip</item>
+        <item name="android:layout_height">93dip</item>
     </style>
 
+	<!-- height = drawable height -->
     <style name="SeekBarHorizontal">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/progress_horizontal</item>
         <item name="android:indeterminateDrawable">@drawable/progress_indeterminate_horizontal</item>
-        <item name="android:minHeight">15dip</item>
-        <item name="android:maxHeight">15dip</item>
-        <item name="android:thumb">@drawable/my_seek_thumb</item>
+        <item name="android:minHeight">62dip</item>
+        <item name="android:maxHeight">62dip</item>
+        <item name="android:thumb">@drawable/thumb_background</item>
     </style>
     
     <style name="SeekBarVertical">
-    	<item name="android:progressDrawable">@drawable/my_progress_vertical</item>
+    	<item name="android:progressDrawable">@drawable/vertbar</item>
     	<item name="android:thumb">@drawable/my_seek_thumb</item>
+		<item name="android:minWidth">93dip</item>
+    	<item name="android:maxWidth">93dip</item>
     </style>
 
 </resources>

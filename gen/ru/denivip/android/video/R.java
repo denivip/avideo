@@ -11,40 +11,45 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int bigbutton_active=0x7f020000;
-        public static final int bigbutton_background=0x7f020001;
-        public static final int bigbutton_hover=0x7f020002;
-        public static final int bigbutton_none_active=0x7f020003;
-        public static final int bigbutton_onpress=0x7f020004;
-        public static final int button_active=0x7f020005;
-        public static final int button_background=0x7f020006;
-        public static final int button_brightness=0x7f020007;
-        public static final int button_contrast=0x7f020008;
-        public static final int button_hd=0x7f020009;
-        public static final int button_hover=0x7f02000a;
-        public static final int button_mute=0x7f02000b;
-        public static final int button_none_active=0x7f02000c;
-        public static final int button_onpress=0x7f02000d;
-        public static final int button_pause=0x7f02000e;
-        public static final int hor_progressbar=0x7f02000f;
-        public static final int icon=0x7f020010;
-        public static final int my_progress_vertical=0x7f020011;
-        public static final int my_seek_thumb=0x7f020012;
-        public static final int position_active=0x7f020013;
-        public static final int position_hover=0x7f020014;
-        public static final int position_none_active=0x7f020015;
-        public static final int position_onpress=0x7f020016;
-        public static final int progress=0x7f020017;
-        public static final int progress_horizontal=0x7f020018;
-        public static final int progress_indeterminate_horizontal=0x7f020019;
-        public static final int progress_secondary=0x7f02001a;
-        public static final int progressbar_indeterminate1=0x7f02001b;
-        public static final int progressbar_indeterminate2=0x7f02001c;
-        public static final int progressbar_indeterminate3=0x7f02001d;
-        public static final int thumb_background=0x7f02001e;
-        public static final int vert_progress=0x7f02001f;
-        public static final int vert_progress_secondary=0x7f020020;
-        public static final int vert_progressbar=0x7f020021;
+        public static final int bigbtn_active=0x7f020000;
+        public static final int bigbtn_hover=0x7f020001;
+        public static final int bigbtn_normal=0x7f020002;
+        public static final int bigbtn_onpress=0x7f020003;
+        public static final int bigbutton_background=0x7f020004;
+        public static final int btn_active=0x7f020005;
+        public static final int btn_hover=0x7f020006;
+        public static final int btn_normal=0x7f020007;
+        public static final int btn_onpress=0x7f020008;
+        public static final int button_background=0x7f020009;
+        public static final int ic_brightness=0x7f02000a;
+        public static final int ic_contrast=0x7f02000b;
+        public static final int ic_hd=0x7f02000c;
+        public static final int ic_ld=0x7f02000d;
+        public static final int ic_md=0x7f02000e;
+        public static final int ic_mute=0x7f02000f;
+        public static final int ic_pause=0x7f020010;
+        public static final int ic_play=0x7f020011;
+        public static final int icon=0x7f020012;
+        public static final int my_seek_thumb=0x7f020013;
+        public static final int progress_horizontal=0x7f020014;
+        public static final int progress_indeterminate_horizontal=0x7f020015;
+        public static final int progressbar_indeterminate1=0x7f020016;
+        public static final int progressbar_indeterminate2=0x7f020017;
+        public static final int progressbar_indeterminate3=0x7f020018;
+        public static final int px1x1=0x7f020019;
+        public static final int seekbar_buffer=0x7f02001a;
+        public static final int seekbar_played=0x7f02001b;
+        public static final int seekbar_total=0x7f02001c;
+        public static final int seekthumb_active=0x7f02001d;
+        public static final int seekthumb_hover=0x7f02001e;
+        public static final int seekthumb_normal=0x7f02001f;
+        public static final int seekthumb_onpress=0x7f020020;
+        public static final int thumb_background=0x7f020021;
+        public static final int vertbar=0x7f020022;
+        public static final int volthumb_active=0x7f020023;
+        public static final int volthumb_hover=0x7f020024;
+        public static final int volthumb_normal=0x7f020025;
+        public static final int volthumb_onpress=0x7f020026;
     }
     public static final class id {
         public static final int brightness=0x7f060005;
@@ -93,9 +98,13 @@ public final class R {
         public static final int MediaButton_Brightness=0x7f050003;
         public static final int MediaButton_Contrast=0x7f050004;
         public static final int MediaButton_HD=0x7f050005;
-        public static final int MediaButton_Mute=0x7f050006;
-        public static final int SeekBarHorizontal=0x7f050008;
-        public static final int SeekBarVertical=0x7f050009;
-        public static final int ThumbButton=0x7f050007;
+        public static final int MediaButton_LD=0x7f050007;
+        public static final int MediaButton_MD=0x7f050006;
+        public static final int MediaButton_Mute=0x7f050008;
+        /**  height = drawable height 
+         */
+        public static final int SeekBarHorizontal=0x7f05000a;
+        public static final int SeekBarVertical=0x7f05000b;
+        public static final int ThumbButton=0x7f050009;
     }
 }

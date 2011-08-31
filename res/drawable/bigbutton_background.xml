@@ -3,19 +3,19 @@
     <item android:state_focused="true" 
     	  android:state_pressed="false" 
     	  android:state_enabled="true"
-          android:drawable="@drawable/bigbutton_hover" />
+          android:drawable="@drawable/bigbtn_hover" />
     <item android:state_enabled="true" 
     	  android:state_pressed="true" 
-    	  android:drawable="@drawable/bigbutton_onpress" />
+    	  android:drawable="@drawable/bigbtn_onpress" />
     <item android:state_enabled="true" 
     	  android:state_focused="false" 
     	  android:state_pressed="false"
-          android:drawable="@drawable/bigbutton_active" />
+          android:drawable="@drawable/bigbtn_active" />
     <item android:state_focused="true" 
     	  android:state_enabled="false" 
-    	  android:drawable="@drawable/bigbutton_none_active" />
+    	  android:drawable="@drawable/bigbtn_normal" />
     <item android:state_focused="false" 
     	  android:state_enabled="false" 
-    	  android:drawable="@drawable/bigbutton_none_active" />
-    <item android:drawable="@drawable/bigbutton_active" />
+    	  android:drawable="@drawable/bigbtn_normal" />
+    <item android:drawable="@drawable/bigbtn_active" />
 </selector>
