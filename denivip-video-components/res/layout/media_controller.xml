@@ -36,13 +36,6 @@
     			  android:orientation="vertical"
     			  android:paddingLeft="15dip">
 		
-    <ImageButton android:id="@+id/contrast"
-    			 android:layout_width="wrap_content" 
-    			 android:layout_height="wrap_content" 
-    			 style="@style/MediaButton.Contrast" 
-    			 android:layout_centerInParent="true"
-    ></ImageButton>
-
     <ImageButton android:id="@+id/brightness"
     			 android:layout_width="wrap_content" 
     			 android:layout_height="wrap_content" 
@@ -135,19 +128,5 @@
     	
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/contrastView" 
-    			  android:layout_width="wrap_content" 
-    			  android:layout_height="wrap_content"
-    			  android:orientation="vertical">
-		
-   	<com.tokaracamara.android.verticalslidevar.VerticalSeekBar
-		android:id="@+id/contrastBar"
-        style="@style/SeekBarVertical"
-    	android:layout_height="300dip"
-    	android:layout_gravity="center_horizontal"
-    	android:layout_width="93dip" />
-    	
-    </LinearLayout>
-    
    	</ViewFlipper>
 </RelativeLayout>

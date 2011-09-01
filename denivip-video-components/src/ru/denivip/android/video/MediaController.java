@@ -91,7 +91,6 @@ public class MediaController extends FrameLayout {
     private ImageButton		 mMuteButton;
     private float				 mMuteSavedVolume = 0;
     private ViewFlipper		 mRightButtons;
-    private ImageButton		 mContrastButton;
     private ImageButton		 mBrightnessButton;
     private ImageButton         mQualityButton;
     private ImageButton         mVolumeButton;
@@ -99,7 +98,6 @@ public class MediaController extends FrameLayout {
     private static final int FLIPPER_CHILD_VOLUME = 0;
     private static final int FLIPPER_CHILD_QUALITY = 1;
     private static final int FLIPPER_CHILD_BRIGHTNESS = 2;
-    private static final int FLIPPER_CHILD_CONTRAST = 3;
 
     public MediaController(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -228,11 +226,6 @@ public class MediaController extends FrameLayout {
         
         mRightButtons = (ViewFlipper) v.findViewById(R.id.rightButtons);
         if (mRightButtons != null) {
-            mContrastButton = (ImageButton) v.findViewById(R.id.contrast);
-            if (mContrastButton != null) {
-            	mContrastButton.setOnClickListener(mContrastListener);
-            }
-            
             mBrightnessButton = (ImageButton) v.findViewById(R.id.brightness);
             if (mBrightnessButton != null) {
             	mBrightnessButton.setOnClickListener(mBrightnessListener);
@@ -449,15 +442,6 @@ public class MediaController extends FrameLayout {
 		}
 	};
 	
-	private View.OnClickListener mContrastListener = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			mRightButtons.setDisplayedChild(FLIPPER_CHILD_CONTRAST);
-			mContrastButton.requestFocusFromTouch();
-			show();
-		}
-	};
-
 	private View.OnClickListener mBrightnessListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {

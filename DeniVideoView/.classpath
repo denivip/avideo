@@ -3,8 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="src" path="DenivipVideoComponents_src"/>
 	<classpathentry kind="lib" path="/DenivipVideoComponents/lib"/>
+	<classpathentry kind="src" path="DenivipVideoComponents_src"/>
 	<classpathentry kind="src" path="VerticalSlidebarExample_src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
