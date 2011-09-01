@@ -16,11 +16,13 @@
 
 package ru.denivip.android.video;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -71,7 +73,7 @@ import com.tokaracamara.android.verticalslidevar.VerticalSeekBar;
  * </ul>
  */
 public class MediaController extends FrameLayout {
-
+	
     private MediaPlayerControl  mPlayer;
     private Context             mContext;
     private View                mAnchor;
@@ -90,6 +92,7 @@ public class MediaController extends FrameLayout {
     private VerticalProgressBar mVolumeLevel;
     private ImageButton		 mMuteButton;
     private float				 mMuteSavedVolume = 0;
+    private VerticalProgressBar mBrightnessLevel;
     private ViewFlipper		 mRightButtons;
     private ImageButton		 mBrightnessButton;
     private ImageButton         mQualityButton;
@@ -224,6 +227,17 @@ public class MediaController extends FrameLayout {
         	mVolumeLevel.setProgress(50);
         }
         
+        mBrightnessLevel = (VerticalProgressBar) v.findViewById(R.id.brightnessBar);
+        if (mBrightnessLevel != null) {
+        	if (mBrightnessLevel instanceof VerticalSeekBar) {
+        		VerticalSeekBar brightness = (VerticalSeekBar) mBrightnessLevel;
+        		brightness.setOnSeekBarChangeListener(mBrightnessLevelListener);
+        	}
+        	Settings.System.putInt(mContext.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL); // TODO возвращать исходное значение после выхода из приложения
+        	mBrightnessLevel.setMax(100);
+        	mBrightnessLevel.setProgress((int)(getWindow().getAttributes().screenBrightness * 100));
+        }
+        
         mRightButtons = (ViewFlipper) v.findViewById(R.id.rightButtons);
         if (mRightButtons != null) {
             mBrightnessButton = (ImageButton) v.findViewById(R.id.brightness);
@@ -241,6 +255,10 @@ public class MediaController extends FrameLayout {
             	mVolumeButton.setOnClickListener(mVolumeListener);
             }
         }
+    }
+    
+    private Window getWindow() {
+    	return mContext == null ? null : ((Activity) mContext).getWindow();
     }
 
     /**
@@ -564,6 +582,31 @@ public class MediaController extends FrameLayout {
 
             float volume = (float)progress / 100;
             mPlayer.setVolume(volume, volume);
+		}
+	};
+	
+	private VerticalSeekBar.OnSeekBarChangeListener mBrightnessLevelListener = new VerticalSeekBar.OnSeekBarChangeListener() {
+		
+		@Override
+		public void onStopTrackingTouch(VerticalSeekBar seekBar) {
+			show();
+		}
+		
+		@Override
+		public void onStartTrackingTouch(VerticalSeekBar seekBar) {
+			show(3600000);
+		}
+		
+		@Override
+		public void onProgressChanged(VerticalSeekBar seekBar, int progress,
+				boolean fromUser) {
+			if (!fromUser) {
+				return;
+			}
+			
+			WindowManager.LayoutParams lp = getWindow().getAttributes();
+			lp.screenBrightness = (float)progress / 100;
+			getWindow().setAttributes(lp);
 		}
 	};
 
