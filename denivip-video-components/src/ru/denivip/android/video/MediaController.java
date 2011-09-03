@@ -298,10 +298,10 @@ public class MediaController extends FrameLayout {
             mAnchor.getLocationOnScreen(anchorpos);
 
             WindowManager.LayoutParams p = new WindowManager.LayoutParams();
-            p.gravity = Gravity.TOP;
+            p.gravity = Gravity.TOP | Gravity.LEFT;
             p.width = mAnchor.getWidth();
-            p.height = LayoutParams.WRAP_CONTENT;
-            p.x = 0;
+            p.height = mAnchor.getHeight();
+            p.x = anchorpos[0] + mAnchor.getWidth() - p.width;
             p.y = anchorpos[1] + mAnchor.getHeight() - p.height;
             p.format = PixelFormat.TRANSLUCENT;
             p.type = WindowManager.LayoutParams.TYPE_APPLICATION_PANEL;

@@ -1,10 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:id="@+id/videoContainer"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_gravity="center_vertical" android:layout_width="match_parent"
-	android:layout_height="wrap_content">
-	<ru.denivip.android.video.VideoView
-		android:id="@+id/videoView" android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
-	</ru.denivip.android.video.VideoView>
-</FrameLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="match_parent"
+	android:id="@+id/linearLayout1" android:layout_height="match_parent">
+
+	<TextView
+		android:text="@string/lipsum_long"
+		android:id="@+id/textView1" android:layout_width="match_parent"
+		android:layout_height="wrap_content"></TextView>
+
+	<LinearLayout android:id="@+id/linearLayout2"
+		android:layout_width="match_parent" android:layout_height="wrap_content"
+		android:layout_weight="10">
+
+		<TextView
+			android:text="@string/lipsum_long"
+			android:id="@+id/textView2" android:layout_width="300dip"
+			android:layout_height="wrap_content"></TextView>
+
+		<FrameLayout android:id="@+id/videoContainer"
+			android:layout_width="wrap_content" android:layout_height="match_parent"
+			android:layout_weight="10">
+
+			<ru.denivip.android.video.VideoView
+				android:id="@+id/videoView" android:layout_width="match_parent"
+				android:layout_height="match_parent">
+			</ru.denivip.android.video.VideoView>
+
+		</FrameLayout>
+
+		<TextView
+			android:text="@string/lipsum_short"
+			android:id="@+id/textView3" android:layout_width="100dip"
+			android:layout_height="wrap_content"></TextView>
+
+	</LinearLayout>
+
+	<TextView
+		android:text="@string/lipsum_longer"
+		android:id="@+id/textView4" android:layout_width="match_parent"
+		android:layout_height="wrap_content"></TextView>
+
+</LinearLayout>
