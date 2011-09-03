@@ -19,7 +19,6 @@ package ru.denivip.android.video;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
-import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
@@ -461,7 +460,7 @@ public class MediaController extends FrameLayout {
         }
         return super.dispatchKeyEvent(event);
     }
-
+    
     private View.OnClickListener mPauseListener = new View.OnClickListener() {
         public void onClick(View v) {
             doPauseResume();
