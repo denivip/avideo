@@ -5,8 +5,6 @@
 				android:layout_height="match_parent" 
 				>
     <ImageButton android:id="@+id/pause"
-    			 android:layout_width="wrap_content" 
-    			 android:layout_height="wrap_content" 
     			 style="@style/BigMediaButton.Play" 
     			 android:layout_centerInParent="true"
     ></ImageButton>
@@ -57,19 +55,20 @@
     			  android:layout_alignParentRight="true" 
     			  android:layout_centerInParent="true"
     			  android:paddingRight="15dip" 
-   				  android:layout_height="wrap_content" 
+   				  android:layout_height="300dip" 
    				  android:layout_width="wrap_content">
  
     <LinearLayout android:id="@+id/volumeView" 
-    			  android:layout_width="wrap_content" 
-    			  android:layout_height="wrap_content"
+    			  android:layout_width="match_parent" 
+    			  android:layout_height="match_parent"
     			  android:orientation="vertical">
 		
    	<com.tokaracamara.android.verticalslidevar.VerticalSeekBar
 		android:id="@+id/volumeBar"
     	android:layout_gravity="center_horizontal"
         style="@style/SeekBarVertical"
-    	android:layout_width="93dip" android:layout_height="300dip"/>
+    	android:layout_width="93dip" android:layout_height="wrap_content"
+    	android:layout_weight="5" />
     	
     <ImageButton android:id="@+id/mute"
     			 android:layout_width="wrap_content" 
@@ -81,8 +80,8 @@
     </LinearLayout>
 
     <LinearLayout android:id="@+id/brightnessView" 
-    			  android:layout_width="wrap_content" 
-    			  android:layout_height="wrap_content"
+    			  android:layout_width="match_parent" 
+    			  android:layout_height="match_parent"
     			  android:orientation="vertical">
 		
    	<com.tokaracamara.android.verticalslidevar.VerticalSeekBar

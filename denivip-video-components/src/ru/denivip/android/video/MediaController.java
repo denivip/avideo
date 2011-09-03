@@ -19,6 +19,7 @@ package ru.denivip.android.video;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
@@ -35,6 +36,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -308,6 +310,16 @@ public class MediaController extends FrameLayout {
             p.flags |= WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
             p.token = null;
             p.windowAnimations = 0; // android.R.style.DropDownAnimationDown;
+
+            /*
+            if (mAnchor.getWidth() < 768) {
+            	scaleDrawables(true);
+            }
+            else {
+            	scaleDrawables(false);
+            }
+            */
+            
             mWindowManager.addView(mDecor, p);
             mShowing = true;
         }
@@ -323,6 +335,26 @@ public class MediaController extends FrameLayout {
             mHandler.removeMessages(FADE_OUT);
             mHandler.sendMessageDelayed(msg, timeout);
         }
+    }
+    
+    private void scaleDrawables(boolean small) {
+    	scaleDrawable(mPauseButton, small);
+    	scaleDrawable(mBrightnessButton, small);
+    	scaleDrawable(mMuteButton, small);
+    	scaleDrawable(mVolumeButton, small);
+    }
+    
+    private void scaleDrawable(ImageView view, boolean small) {
+    	ViewGroup.LayoutParams lp = view.getLayoutParams();
+    	if (small) {
+        	lp.width = view.getDrawable().getMinimumWidth() / 2;
+        	lp.height = view.getDrawable().getMinimumHeight() / 2;
+    	}
+    	else {
+    		lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+    		lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    	}
+    	view.setLayoutParams(lp);
     }
     
     public boolean isShowing() {

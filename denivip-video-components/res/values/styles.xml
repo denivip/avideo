@@ -18,8 +18,9 @@
 
     <style name="BigMediaButton">
         <item name="android:background">@drawable/bigbutton_background</item>
-        <item name="android:layout_width">130dip</item>
-        <item name="android:layout_height">130dip</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="BigMediaButton.Play">
@@ -28,8 +29,9 @@
 
     <style name="MediaButton">
         <item name="android:background">@drawable/button_background</item>
-        <item name="android:layout_width">50dip</item>
-        <item name="android:layout_height">50dip</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="MediaButton.Brightness">
@@ -42,8 +44,9 @@
 
     <style name="ThumbButton">
         <item name="android:background">@drawable/thumb_background</item>
-        <item name="android:layout_width">93dip</item>
-        <item name="android:layout_height">93dip</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 	<!-- height = drawable height -->
@@ -54,6 +57,9 @@
         <item name="android:minHeight">62dip</item>
         <item name="android:maxHeight">62dip</item>
         <item name="android:thumb">@drawable/thumb_background</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
     
     <style name="SeekBarVertical">
@@ -61,6 +67,9 @@
     	<item name="android:thumb">@drawable/my_seek_thumb</item>
 		<item name="android:minWidth">93dip</item>
     	<item name="android:maxWidth">93dip</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>
