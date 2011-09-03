@@ -36,22 +36,6 @@
          <item name="android:src">@drawable/ic_brightness</item>
     </style>
 
-    <style name="MediaButton.Contrast">
-        <item name="android:src">@drawable/ic_contrast</item>
-    </style>
-
-    <style name="MediaButton.HD">
-        <item name="android:src">@drawable/ic_hd</item>
-    </style>
-
-    <style name="MediaButton.MD">
-        <item name="android:src">@drawable/ic_md</item>
-    </style>
-
-    <style name="MediaButton.LD">
-        <item name="android:src">@drawable/ic_ld</item>
-    </style>
-
     <style name="MediaButton.Mute">
         <item name="android:src">@drawable/ic_mute</item>
     </style>

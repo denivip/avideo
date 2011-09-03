@@ -95,12 +95,10 @@ public class MediaController extends FrameLayout {
     private VerticalProgressBar mBrightnessLevel;
     private ViewFlipper		 mRightButtons;
     private ImageButton		 mBrightnessButton;
-    private ImageButton         mQualityButton;
     private ImageButton         mVolumeButton;
     
     private static final int FLIPPER_CHILD_VOLUME = 0;
-    private static final int FLIPPER_CHILD_QUALITY = 1;
-    private static final int FLIPPER_CHILD_BRIGHTNESS = 2;
+    private static final int FLIPPER_CHILD_BRIGHTNESS = 1;
 
     public MediaController(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -243,11 +241,6 @@ public class MediaController extends FrameLayout {
             mBrightnessButton = (ImageButton) v.findViewById(R.id.brightness);
             if (mBrightnessButton != null) {
             	mBrightnessButton.setOnClickListener(mBrightnessListener);
-            }
-            
-            mQualityButton = (ImageButton) v.findViewById(R.id.quality);
-            if (mQualityButton != null) {
-            	mQualityButton.setOnClickListener(mQualityListener);
             }
             
             mVolumeButton = (ImageButton) v.findViewById(R.id.volume);
@@ -465,15 +458,6 @@ public class MediaController extends FrameLayout {
 		public void onClick(View v) {
 			mRightButtons.setDisplayedChild(FLIPPER_CHILD_BRIGHTNESS);
 			mBrightnessButton.requestFocusFromTouch();
-			show();
-		}
-	};
-
-	private View.OnClickListener mQualityListener = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			mRightButtons.setDisplayedChild(FLIPPER_CHILD_QUALITY);
-			mQualityButton.requestFocusFromTouch();
 			show();
 		}
 	};

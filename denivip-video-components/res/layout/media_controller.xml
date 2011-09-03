@@ -43,13 +43,6 @@
     			 android:layout_centerInParent="true"
     ></ImageButton>
 
-    <ImageButton android:id="@+id/quality"
-    			 android:layout_width="wrap_content" 
-    			 android:layout_height="wrap_content" 
-    			 style="@style/MediaButton.HD" 
-    			 android:layout_centerInParent="true"
-    ></ImageButton>
-		    			  
     <ImageButton android:id="@+id/volume"
     			 android:layout_width="wrap_content" 
     			 android:layout_height="wrap_content" 
@@ -81,34 +74,6 @@
     			 android:layout_width="wrap_content" 
     			 android:layout_height="wrap_content" 
     			 style="@style/MediaButton.Mute" 
-    			 android:layout_centerInParent="true"
-    ></ImageButton>
-		    			  
-    </LinearLayout>
-
-    <LinearLayout android:id="@+id/qualityView" 
-    			  android:layout_width="wrap_content" 
-    			  android:layout_height="wrap_content"
-    			  android:orientation="vertical">
-		
-    <ImageButton android:id="@+id/lq"
-    			 android:layout_width="wrap_content" 
-    			 android:layout_height="wrap_content" 
-    			 style="@style/MediaButton.LD" 
-    			 android:layout_centerInParent="true"
-    ></ImageButton>
-		    			  
-    <ImageButton android:id="@+id/mq"
-    			 android:layout_width="wrap_content" 
-    			 android:layout_height="wrap_content" 
-    			 style="@style/MediaButton.MD" 
-    			 android:layout_centerInParent="true"
-    ></ImageButton>
-		    			  
-    <ImageButton android:id="@+id/hq"
-    			 android:layout_width="wrap_content" 
-    			 android:layout_height="wrap_content" 
-    			 style="@style/MediaButton.HD" 
     			 android:layout_centerInParent="true"
     ></ImageButton>
 		    			  
