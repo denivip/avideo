@@ -40,9 +40,7 @@ public class Main extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		mVideo.resume(); // FIXME не восстанавливается позиция после ухода на home screen
-		mVideo.start(); // without this pause function will not work after
-						// resume
+		mVideo.resume();
 	}
 
 	@Override

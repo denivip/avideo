@@ -597,6 +597,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 
     public void suspend() {
         if (isInPlaybackState()) {
+        	mSeekWhenPrepared = getCurrentPosition();
             if (MediaPlayerInternals.suspend(mMediaPlayer)) {
                 mStateWhenSuspended = mCurrentState;
                 mCurrentState = STATE_SUSPEND;
