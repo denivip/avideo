@@ -310,14 +310,12 @@ public class MediaController extends FrameLayout {
             p.token = null;
             p.windowAnimations = 0; // android.R.style.DropDownAnimationDown;
 
-            /*
             if (mAnchor.getWidth() < 768) {
             	scaleDrawables(true);
             }
             else {
             	scaleDrawables(false);
             }
-            */
             
             mWindowManager.addView(mDecor, p);
             mShowing = true;
@@ -341,13 +339,21 @@ public class MediaController extends FrameLayout {
     	scaleDrawable(mBrightnessButton, small);
     	scaleDrawable(mMuteButton, small);
     	scaleDrawable(mVolumeButton, small);
+    	scaleVerticalBar(mVolumeLevel);
+    	scaleVerticalBar(mBrightnessLevel);
+    }
+    
+    private void scaleVerticalBar(VerticalProgressBar view) {
+    	ViewGroup.LayoutParams lp = view.getLayoutParams();
+   		lp.height = mAnchor.getHeight() / 2;
+    	view.setLayoutParams(lp);
     }
     
     private void scaleDrawable(ImageView view, boolean small) {
     	ViewGroup.LayoutParams lp = view.getLayoutParams();
     	if (small) {
-        	lp.width = view.getDrawable().getMinimumWidth() / 2;
-        	lp.height = view.getDrawable().getMinimumHeight() / 2;
+        	lp.width = view.getDrawable().getMinimumWidth() * 2 / 3;
+        	lp.height = view.getDrawable().getMinimumHeight() * 2 / 3;
     	}
     	else {
     		lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;

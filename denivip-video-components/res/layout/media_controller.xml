@@ -55,7 +55,7 @@
     			  android:layout_alignParentRight="true" 
     			  android:layout_centerInParent="true"
     			  android:paddingRight="15dip" 
-   				  android:layout_height="300dip" 
+   				  android:layout_height="wrap_content" 
    				  android:layout_width="wrap_content">
  
     <LinearLayout android:id="@+id/volumeView" 
@@ -75,7 +75,7 @@
     			 android:layout_height="wrap_content" 
     			 style="@style/MediaButton.Mute" 
     			 android:layout_centerInParent="true"
-    ></ImageButton>
+    android:layout_gravity="center_horizontal"></ImageButton>
 		    			  
     </LinearLayout>
 
