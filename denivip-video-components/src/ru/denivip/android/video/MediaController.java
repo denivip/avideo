@@ -16,6 +16,7 @@
 
 package ru.denivip.android.video;
 
+import ru.denivip.android.video.R;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -459,6 +460,9 @@ public class MediaController extends FrameLayout {
             return super.dispatchKeyEvent(event);
         } else if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_MENU) {
             hide();
+            
+			// FIXME move to zoom/pinch event
+			onFullScreen();
 
             return true;
         } else {
@@ -467,6 +471,13 @@ public class MediaController extends FrameLayout {
         return super.dispatchKeyEvent(event);
     }
     
+	private boolean isFullScreen = false;
+
+	private void onFullScreen() {
+		mPlayer.setFullscreen(!isFullScreen);
+		isFullScreen = !isFullScreen;
+	}
+	
     private View.OnClickListener mPauseListener = new View.OnClickListener() {
         public void onClick(View v) {
             doPauseResume();

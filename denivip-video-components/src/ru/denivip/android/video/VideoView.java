@@ -18,6 +18,7 @@ package ru.denivip.android.video;
 
 import java.io.IOException;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,10 +32,14 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 /**
  * Displays a video file.  The VideoView class
@@ -89,6 +94,8 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
     
     private float		  mSetLeftVolumeWhenPrepared;
     private float		  mSetRightVolumeWhenPrepared;
+
+	private ViewGroup 	  mFullScreenLayout;
 
     public VideoView(Context context) {
         super(context);
@@ -157,6 +164,9 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 }
 
     private void initVideoView() {
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		mFullScreenLayout = (ViewGroup) inflater.inflate(R.layout.fullscreen, null);
+    	
         mVideoWidth = 0;
         mVideoHeight = 0;
         getHolder().addCallback(mSHCallback);
@@ -685,6 +695,44 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 		} else {
 			mSetLeftVolumeWhenPrepared = leftVolume; 
 			mSetRightVolumeWhenPrepared = rightVolume; 
+		}
+	}
+	
+	private View savedContentView;
+	
+	@Override
+	public void setFullscreen(boolean fullscreen) {
+		Activity activity = (Activity) getContext();
+		
+		if (fullscreen) {
+			activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+					WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+			suspend();
+
+			savedContentView = ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
+			ViewGroup container = (ViewGroup) getParent();
+			container.removeView(this);
+			activity.setContentView(mFullScreenLayout);
+			
+			container = (FrameLayout) activity.findViewById(R.id.videoContainer); 
+			container.addView(this);
+
+			resume();
+			start();
+		} else {
+			activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+			suspend();
+
+			ViewGroup container = (ViewGroup) getParent();
+			container.removeView(this);
+			activity.setContentView(savedContentView);
+			container = (FrameLayout) activity.findViewById(R.id.videoContainer); 
+			container.addView(this);
+
+			resume();
+			start();
 		}
 	}
 }

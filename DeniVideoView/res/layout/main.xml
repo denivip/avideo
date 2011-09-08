@@ -16,6 +16,13 @@
 		<FrameLayout android:id="@+id/videoContainer"
 			android:layout_width="wrap_content" android:layout_height="match_parent"
 			android:layout_weight="10">
+
+			<ru.denivip.android.video.VideoView
+				xmlns:android="http://schemas.android.com/apk/res/android"
+				android:id="@+id/videoView" android:layout_width="match_parent"
+				android:layout_height="match_parent">
+			</ru.denivip.android.video.VideoView>
+
 		</FrameLayout>
 
 		<TextView android:text="@string/lipsum_short" android:id="@+id/textView3"
