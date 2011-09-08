@@ -16,7 +16,6 @@
 
 package ru.denivip.android.video;
 
-import ru.denivip.android.video.R;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -26,6 +25,7 @@ import android.os.Message;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -98,6 +98,7 @@ public class MediaController extends FrameLayout {
     private ViewFlipper		 mRightButtons;
     private ImageButton		 mBrightnessButton;
     private ImageButton         mVolumeButton;
+    private GestureDetector 	 mGestureDetector;
     
     private static final int FLIPPER_CHILD_VOLUME = 0;
     private static final int FLIPPER_CHILD_BRIGHTNESS = 1;
@@ -127,6 +128,7 @@ public class MediaController extends FrameLayout {
     }
 
     private void initFloatingWindow() {
+    	mGestureDetector = new GestureDetector(mContext, mGestureListener);
         mWindowManager = (WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE);
         mWindow = PolicyManager.makeNewWindow(mContext);
         mWindow.setWindowManager(mWindowManager, null, null);
@@ -425,8 +427,13 @@ public class MediaController extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        show();
-        return true;
+    	if (mGestureDetector.onTouchEvent(event)) {
+    		return true;
+    	}
+    	else {
+            show();
+            return true;
+    	}
     }
 
     @Override
@@ -461,9 +468,6 @@ public class MediaController extends FrameLayout {
         } else if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_MENU) {
             hide();
             
-			// FIXME move to zoom/pinch event
-			onFullScreen();
-
             return true;
         } else {
             show();
@@ -641,7 +645,20 @@ public class MediaController extends FrameLayout {
 			getWindow().setAttributes(lp);
 		}
 	};
+	
+	private GestureDetector.SimpleOnGestureListener mGestureListener = new GestureDetector.SimpleOnGestureListener() {
+		@Override
+		public boolean onDoubleTap(MotionEvent e) {
+			onFullScreen();
+			return true;
+		}
 
+		@Override
+		public void onLongPress(MotionEvent e) {
+			onFullScreen();
+		}
+	};
+	
     @Override
     public void setEnabled(boolean enabled) {
         if (mPauseButton != null) {
