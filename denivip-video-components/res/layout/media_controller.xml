@@ -45,7 +45,7 @@
     <ImageButton android:id="@+id/volume"
     			 android:layout_width="wrap_content" 
     			 android:layout_height="wrap_content" 
-    			 style="@style/MediaButton.Mute" 
+    			 style="@style/MediaButton.Volume" 
     			 android:layout_centerInParent="true"
     ></ImageButton>
 		    			  

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="hello">Hello World, Main!</string>
-	<string name="app_name">DeniVideoView</string>
+	<string name="app_name">AVideo Sample</string>
 	<string name="lipsum_short">Lorem ipsum dolor sit amet, consectetuer adipiscing
 		elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
 		aliquam erat volutpat.</string>

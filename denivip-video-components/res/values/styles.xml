@@ -42,6 +42,10 @@
         <item name="android:src">@drawable/ic_mute</item>
     </style>
 
+    <style name="MediaButton.Volume">
+        <item name="android:src">@drawable/ic_volume</item>
+    </style>
+
     <style name="ThumbButton">
         <item name="android:background">@drawable/thumb_background</item>
         <item name="android:scaleType">fitCenter</item>

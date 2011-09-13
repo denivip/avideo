@@ -11,7 +11,7 @@ public class Main extends Activity {
 
 	private static final String TEST_STREAM_LOCAL = "http://local/PR243467.mp4";
 
-	private static final String TEST_STREAM_REMOTE = "http://www.denivip.ru/trailer.mp4";
+	private static final String TEST_STREAM_REMOTE = "http://www.denivip.ru/sites/default/files/trailer2.mp4";
 
 	private VideoView mVideo;
 	
@@ -27,7 +27,7 @@ public class Main extends Activity {
 		MediaController controller = new MediaController(this);
 
 		mVideo.setMediaController(controller);
-		mVideo.setVideoURI(Uri.parse(TEST_STREAM_LOCAL));
+		mVideo.setVideoURI(Uri.parse(TEST_STREAM_REMOTE));
 		mVideo.start();
 	}
 
