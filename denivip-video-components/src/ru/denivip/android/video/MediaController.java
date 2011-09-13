@@ -236,8 +236,8 @@ public class MediaController extends FrameLayout {
         		brightness.setOnSeekBarChangeListener(mBrightnessLevelListener);
         	}
         	Settings.System.putInt(mContext.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL); // TODO возвращать исходное значение после выхода из приложения
-        	mBrightnessLevel.setMax(100);
-        	mBrightnessLevel.setProgress((int)(getWindow().getAttributes().screenBrightness * 100));
+        	mBrightnessLevel.setMax(90);
+        	mBrightnessLevel.setProgress((int)((getWindow().getAttributes().screenBrightness + 10) * 100));
         }
         
         mRightButtons = (ViewFlipper) v.findViewById(R.id.rightButtons);
@@ -641,7 +641,7 @@ public class MediaController extends FrameLayout {
 			}
 			
 			WindowManager.LayoutParams lp = getWindow().getAttributes();
-			lp.screenBrightness = (float)progress / 100;
+			lp.screenBrightness = (float)(progress + 10) / 100;
 			getWindow().setAttributes(lp);
 		}
 	};
