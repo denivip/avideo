@@ -9,9 +9,9 @@ import android.os.Bundle;
 
 public class Main extends Activity {
 
-	private static final String TEST_STREAM_LOCAL = "http://local/PR243467.mp4";
+	private static final String TEST_STREAM_LOCAL = "http://www.androidbegin.com/tutorial/AndroidCommercial.3gp";
 
-	private static final String TEST_STREAM_REMOTE = "http://www.denivip.ru/sites/default/files/trailer2.mp4";
+	private static final String TEST_STREAM_REMOTE = "http://techslides.com/demos/sample-videos/small.mp4";
 
 	private VideoView mVideo;
 	
