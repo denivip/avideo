@@ -5,6 +5,9 @@
       android:versionName="1.0">
     <uses-sdk android:minSdkVersion="8" />
     
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    
     <!-- for brightness control -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
